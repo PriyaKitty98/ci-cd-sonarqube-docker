@@ -1,10 +1,7 @@
 pipeline {
     agent any
     
-    tools {
-        sonarRunner 'SonarScanner'
-    }
-
+    
     environment {
         SONARQUBE_ENV = 'SonarQube'
         DOCKER_IMAGE = 'priyakitty98/ci-cd-sonarqube-docker'
