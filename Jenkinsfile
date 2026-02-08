@@ -72,7 +72,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 bat 'docker rm -f ci-cd-sonarqube-docker || exit 0'
-                bat 'docker run -d -p 8080:8080 --name ci-cd-sonarqube-docker %DOCKER_IMAGE%:latest'
+                bat 'docker run -d -p 8081:8080 --name ci-cd-sonarqube-docker %DOCKER_IMAGE%:latest'
             }
         }
     }
