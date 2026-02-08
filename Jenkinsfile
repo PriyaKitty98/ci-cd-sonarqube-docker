@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    tools {
+        sonarScanner 'SonarScanner'
+    }
 
     environment {
         SONARQUBE_ENV = 'SonarQube'
@@ -28,15 +32,15 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv("${SONARQUBE_ENV}") {
-                    bat '''
-                    sonar-scanner \
-                    -Dsonar.projectKey=ci-cd-sonadocker \
+                withSonarQubeEnv('SonarQube') {
+                    bat """
+                    "%SONAR_SCANNER_HOME%\\bin\\sonar-scanner.bat" ^
+                    -Dsonar.projectKey=ci-cd-sonadocker ^
                     -Dsonar.sources=.
-                    '''
+            """
                 }
             }
-        }
+        }   
 
         stage('Quality Gate') {
             steps {
