@@ -1,7 +1,7 @@
 pipeline {
     agent any
     
-    
+
     environment {
         SONARQUBE_ENV = 'SonarQube'
         DOCKER_IMAGE = 'priyakitty98/ci-cd-sonarqube-docker'
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube') {
                     bat """
-                    "%SONAR_SCANNER_HOME%\\bin\\sonar-scanner.bat" ^
+                    sonar-scanner ^
                     -Dsonar.projectKey=ci-cd-sonadocker ^
                     -Dsonar.sources=.
             """
