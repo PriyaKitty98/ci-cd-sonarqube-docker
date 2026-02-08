@@ -16,20 +16,20 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'pytest'
+                bat 'pytest'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv("${SONARQUBE_ENV}") {
-                    sh '''
+                    bat '''
                     sonar-scanner \
                     -Dsonar.projectKey=ci-cd-sonarqube-docker \
                     -Dsonar.sources=.
@@ -48,7 +48,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE:latest .'
+                bat 'docker build -t $DOCKER_IMAGE:latest .'
             }
         }
 
