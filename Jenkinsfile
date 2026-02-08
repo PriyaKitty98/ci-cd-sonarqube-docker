@@ -31,7 +31,7 @@ pipeline {
                 withSonarQubeEnv("${SONARQUBE_ENV}") {
                     bat '''
                     sonar-scanner \
-                    -Dsonar.projectKey=ci-cd-sonarqube-docker \
+                    -Dsonar.projectKey=ci-cd-sonadocker \
                     -Dsonar.sources=.
                     '''
                 }
