@@ -5,6 +5,7 @@ pipeline {
     environment {
         SONARQUBE_ENV = 'SonarQube'
         DOCKER_IMAGE = 'priyakitty98/ci-cd-sonarqube-docker'
+        DOCKERHUB_CREDENTIALS = 'dockerhub-token'
     }
 
     stages {
@@ -56,7 +57,7 @@ pipeline {
         stage('Docker Push') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: 'dockerhub-creds',
+                    credentialsId: DOCKERHUB_CREDENTIALS,
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
